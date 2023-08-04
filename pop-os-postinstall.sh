@@ -3,7 +3,7 @@
 # pos-os-postinstall.sh - Instalar e configura programas no Pop!_OS (20.04 LTS ou superior)
 #
 # Website:       https://diolinux.com.br
-# Autor:         Dionatan Simioni
+# Autor:         LR
 #
 # ------------------------------------------------------------------------ #
 #
@@ -93,8 +93,7 @@ PROGRAMAS_PARA_INSTALAR=(
   p7zip-rar
   grsync
   fonts-hack-ttf
-  guvcview
- 
+  guvcview 
 )
 
 # ---------------------------------------------------------------------- #
