@@ -1,30 +1,19 @@
 #!/usr/bin/env bash
-#
-# pos-os-postinstall.sh - Instalar e configura programas no Pop!_OS (20.04 LTS ou superior)
-#
-# Website:       https://diolinux.com.br
-# Autor:         LR
-#
-# ------------------------------------------------------------------------ #
-#
-# COMO USAR?
-#   $ ./pos-os-postinstall.sh
-#
+
+
 # ----------------------------- VARIÁVEIS ----------------------------- #
+
 set -e
 
 ##URLS
 
-#URL_GOOGLE_CHROME="https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
-#URL_4K_VIDEO_DOWNLOADER="https://dl.4kdownload.com/app/4kvideodownloader_4.20.0-1_amd64.deb?source=website"
-#URL_INSYNC="https://d2t3ff60b2tol4.cloudfront.net/builds/insync_3.7.2.50318-impish_amd64.deb"
-#URL_SYNOLOGY_DRIVE="https://global.download.synology.com/download/Utility/SynologyDriveClient/3.0.3-12689/Ubuntu/Installer/x86_64/synology-drive-client-12689.x86_64.deb"
 URL_PCLOUD="https://www.pcloud.com/how-to-install-pcloud-drive-linux.html?download=electron-64"
+URL_ANYDESK="https://anydesk.com/pt/downloads/linux?dv=deb_64"
 
 
 ##DIRETÓRIOS E ARQUIVOS
 
-DIRETORIO_DOWNLOADS="$HOME/Downloads"
+DIRETORIO_DOWNLOADS="$HOME/Downloads/LR"
 #FILE="/home/$USER/.config/gtk-3.0/bookmarks"
 
 
@@ -69,6 +58,7 @@ travas_apt(){
 add_archi386(){
 sudo dpkg --add-architecture i386
 }
+
 ## Atualizando o repositório ##
 just_apt_update(){
 sudo apt update -y
@@ -76,8 +66,7 @@ sudo apt update -y
 
 ##DEB SOFTWARES TO INSTALL
 
-PROGRAMAS_PARA_INSTALAR={
-  virtualbox
+PROGRAMAS_PARA_INSTALAR=(
   timeshift
   gufw
   synaptic
@@ -85,7 +74,6 @@ PROGRAMAS_PARA_INSTALAR={
   gnome-sushi 
   folder-color
   git
-  wget
   ubuntu-restricted-extras
   flatpak
   p7zip
@@ -94,25 +82,26 @@ PROGRAMAS_PARA_INSTALAR={
   grsync
   fonts-hack-ttf
   guvcview 
-}
+)
 
 # ---------------------------------------------------------------------- #
 
 ## Download e instalaçao de programas externos ##
 
-#install_debs(){
+install_debs(){
 
-#echo -e "${VERDE}[INFO] - Baixando pacotes .deb${SEM_COR}"
+echo -e "${VERDE}[INFO] - Baixando pacotes .deb${SEM_COR}"
 
-#mkdir "$DIRETORIO_DOWNLOADS"
-#wget -c "$URL_GOOGLE_CHROME"       -P "$DIRETORIO_DOWNLOADS"
-#wget -c "$URL_4K_VIDEO_DOWNLOADER" -P "$DIRETORIO_DOWNLOADS"
-#wget -c "$URL_INSYNC"              -P "$DIRETORIO_DOWNLOADS"
-#wget -c "$URL_SYNOLOGY_DRIVE"      -P "$DIRETORIO_DOWNLOADS"
+mkdir "$DIRETORIO_DOWNLOADS"
+wget -c "$URL_PCLOUD" -P "$DIRETORIO_DOWNLOADS"
+wget -c "$URL_ANYDESK" -P "$DIRETORIO_DOWNLOADS"
+
 
 ## Instalando pacotes .deb baixados na sessão anterior ##
 #echo -e "${VERDE}[INFO] - Instalando pacotes .deb baixados${SEM_COR}"
 #sudo dpkg -i $DIRETORIO_DOWNLOADS/*.deb
+#}
+
 
 # Instalar programas no apt
 echo -e "${VERDE}[INFO] - Instalando pacotes apt do repositório${SEM_COR}"
@@ -125,7 +114,7 @@ for nome_do_programa in ${PROGRAMAS_PARA_INSTALAR[@]}; do
   fi
 done
 
-}
+
 ## Instalando pacotes Flatpak ##
 install_flatpaks(){
 
@@ -209,14 +198,14 @@ nautilus -q
 # -------------------------------------------------------------------------------- #
 # -------------------------------EXECUÇÃO----------------------------------------- #
 
-travas_apt
+#travas_apt
 testes_internet
-travas_apt
+#travas_apt
 apt_update
-travas_apt
+#travas_apt
 add_archi386
 just_apt_update
-#install_debs
+install_debs
 install_flatpaks
 #install_snaps
 #extra_config
@@ -226,3 +215,4 @@ system_clean
 ## finalização
 
   echo -e "${VERDE}[INFO] - Script finalizado, instalação concluída! :)${SEM_COR}"
+  
