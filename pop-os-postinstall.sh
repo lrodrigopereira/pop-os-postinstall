@@ -66,7 +66,7 @@ sudo apt update -y
 
 ##DEB SOFTWARES TO INSTALL
 
-PROGRAMAS_PARA_INSTALAR=(
+PROGRAMAS_PARA_INSTALAR=[
   timeshift
   gufw
   synaptic
@@ -82,7 +82,7 @@ PROGRAMAS_PARA_INSTALAR=(
   grsync
   fonts-hack-ttf
   guvcview 
-)
+]
 
 # ---------------------------------------------------------------------- #
 
