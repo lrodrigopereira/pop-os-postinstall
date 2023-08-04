@@ -214,5 +214,4 @@ system_clean
 
 ## finalização
 
-  echo -e "${VERDE}[INFO] - Script finalizado, instalação concluída! :)${SEM_COR}"
-  
+echo -e "${VERDE}[INFO] - Script finalizado, instalação concluída! :)${SEM_COR}"
